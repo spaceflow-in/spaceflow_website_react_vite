@@ -3,16 +3,23 @@ import './Header.css';
 import logo from '../images/Spaceflow Golden With caption.png'
 
 function Header() {
+  const handleContactClick = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <>
       <header className="top-bar">
         <div className="top-bar-content">
-          <input
+          {/* <input
             type="text"
             placeholder="Search something..."
             className="search-input"
-          />
-          <button className="contact-us-button">Contact Us</button>
+          /> */}
+          <button className="contact-us-button" onClick={handleContactClick}>Contact Us</button>
         </div>
       </header>
 

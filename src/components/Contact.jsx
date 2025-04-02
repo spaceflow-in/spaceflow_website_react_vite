@@ -4,7 +4,7 @@ import receptionImage from '../images/reception.jpg';
 
 function Contact() {
   return (
-    <section className="contact-section">
+    <section id="contact" className="contact-section">
       
       <div className="contact-content">
       <form action="https://formsubmit.co/divyansh@nirmaan.app" method="POST">
@@ -48,7 +48,7 @@ function Contact() {
           className="w-full border p-2 rounded"
         />
       </div>
-      <div className="text-right pt-4 pr-2">
+      <div className="form-submit">
         <button type="submit" className="golden-button">
           Send
         </button>
