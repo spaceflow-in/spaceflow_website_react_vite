@@ -149,91 +149,206 @@
 
 // export default Header;
 
-// File: src/components/Header.tsx (Updated)
+// File: src/components/Header.tsx (Updated) (IN-USE)
 
-import React, { useState, useEffect } from 'react';
-import logo from '../images/spaceflow.avif'; // Your current logo path
-import { Menu, X } from 'lucide-react'; // Import the 'X' icon for closing
+// import React, { useState, useEffect } from 'react';
+// import logo from '../images/spaceflow.avif'; // Your current logo path
+// import { Menu, X } from 'lucide-react'; // Import the 'X' icon for closing
 
-const navLinks = [
+// const navLinks = [
+//   { href: '#about', label: 'About' },
+//   { href: '#work', label: 'Our work' },
+//   { href: '#services', label: 'Services' },
+//   { href: '#faqs', label: 'FAQs' },
+//   { href: '#contact', label: 'Contact' },
+// ];
+
+// const Header: React.FC = () => {
+//   const [isScrolled, setIsScrolled] = useState(false);
+//   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setIsScrolled(window.scrollY > 50);
+//     };
+
+//     window.addEventListener('scroll', handleScroll);
+//     return () => {
+//       window.removeEventListener('scroll', handleScroll);
+//     };
+//   }, []);
+
+//   return (
+//     <header
+//       className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
+//         ? 'bg-background/80 backdrop-blur-lg border-b border-white/10'
+//         : 'bg-transparent'
+//         }`}
+//     >
+//       <div className="max-w-screen-xl mx-auto px-8 py-4 flex justify-between items-center">
+//         {/* Logo */}
+//         <a href="#" className="flex items-center">
+//           <img src={logo} alt="Spaceflow Logo" className="h-14 w-auto object-contain" />
+//         </a>
+
+//         {/* Desktop Navigation */}
+//         <nav className="hidden lg:flex items-center space-x-2">
+//           {navLinks.map((link) => (
+//             <a
+//               key={link.label}
+//               href={link.href}
+//               className='bg-primary text-background font-sans font-semibold px-6 py-2.5 rounded-full
+//                          hover:bg-yellow-400 transition-colors duration-300'
+//             >
+//               {link.label}
+//             </a>
+//           ))}
+//         </nav>
+
+//         {/* Mobile Menu Button */}
+//         <div className="lg:hidden">
+//           <button
+//             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} // Toggle state on click
+//             className="p-2 rounded-full bg-white text-black" // White background, black icon
+//           >
+//             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Mobile Menu Overlay */}
+//       {isMobileMenuOpen && (
+//         <nav className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg shadow-lg">
+//           <div className="flex flex-col items-center space-y-6 py-8">
+//             {navLinks.map((link) => (
+//               <a
+//                 key={link.label}
+//                 href={link.href}
+//                 className="text-text-primary text-xl font-sans"
+//                 onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
+//               >
+//                 {link.label}
+//               </a>
+//             ))}
+//           </div>
+//         </nav>
+//       )}
+//     </header>
+//   );
+// };
+
+// export default Header;
+
+// File: src/components/Header.tsx (Final Rebuilt Version)
+
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu as MenuIcon, X } from 'lucide-react';
+import { cn } from '../lib/utils';
+import { Menu, MenuItem, ProductItem, HoveredLink } from './ui/navbar-menu';
+import logo from '../images/spaceflow.avif';
+
+
+const mobileNavLinks = [
   { href: '#about', label: 'About' },
-  { href: '#work', label: 'Our work' },
+  { href: '#work', label: 'Our Work' },
   { href: '#services', label: 'Services' },
   { href: '#faqs', label: 'FAQs' },
   { href: '#contact', label: 'Contact' },
 ];
 
+// --- Floating Navbar for Desktop ---
+function Navbar({ className }: { className?: string }) {
+  const [active, setActive] = useState<string | null>(null);
+  return (
+    <div className={cn("fixed top-6 inset-x-0 max-w-2xl mx-auto z-50", className)}>
+      <Menu setActive={setActive}>
+        {mobileNavLinks.map((link) => (
+          <MenuItem href={link.href} item={link.label} key={link.label}>
+
+          </MenuItem>
+        ))}
+      </Menu>
+    </div>
+  );
+}
+
+// --- Main Header Component (Orchestrator) ---
 const Header: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
+  const [active, setActive] = useState<string | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-background/80 backdrop-blur-lg border-b border-white/10'
-        : 'bg-transparent'
-        }`}
-    >
-      <div className="max-w-screen-xl mx-auto px-8 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <a href="#" className="flex items-center">
-          <img src={logo} alt="Spaceflow Logo" className="h-14 w-auto object-contain" />
-        </a>
+    <>
+      {/* --- Desktop Header with Two Floating Pills --- */}
+      <header className="hidden lg:block fixed top-4 inset-x-4 z-50">
+        {/* This container is transparent and only positions the two pills */}
+        <div className="max-w-screen-xl mx-auto flex justify-between items-center">
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className='bg-primary text-background font-sans font-semibold px-6 py-2.5 rounded-full
-                         hover:bg-yellow-400 transition-colors duration-300'
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+          {/* Pill 1: The Logo */}
+          <a href="#" className="flex-shrink-0 p-2 rounded-full bg-background/80 backdrop-blur-lg border border-white/10">
+            <img src={logo} alt="Spaceflow Logo" className="h-20 w-auto object-contain" />
+          </a>
 
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden">
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} // Toggle state on click
-            className="p-2 rounded-full bg-white text-black" // White background, black icon
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu Overlay */}
-      {isMobileMenuOpen && (
-        <nav className="lg:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg shadow-lg">
-          <div className="flex flex-col items-center space-y-6 py-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-text-primary text-xl font-sans"
-                onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
-              >
-                {link.label}
-              </a>
-            ))}
+          {/* Pill 2: The Navigation Menu */}
+          <div className="flex-shrink-0 rounded-full bg-background/80 backdrop-blur-lg border border-white/10">
+            <Menu setActive={setActive}>
+              {mobileNavLinks.map((link) => (
+                <MenuItem
+                  key={link.label}
+                  setActive={setActive}
+                  active={active}
+                  item={link.label}
+                  href={link.href}
+                >
+                  {link.dropdownContent}
+                </MenuItem>
+              ))}
+            </Menu>
           </div>
-        </nav>
-      )}
-    </header>
+        </div>
+      </header>
+
+      {/* --- Mobile Header Bar --- */}
+      <header className="lg:hidden fixed top-4 inset-x-4 z-50 flex justify-between items-center p-2 rounded-full bg-background/80 backdrop-blur-lg border border-white/10">
+        <a href="#" className="flex items-center">
+          <img src={logo} alt="Spaceflow Logo" className="h-12 w-auto object-contain" />
+        </a>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 rounded-full bg-white text-black"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <MenuIcon size={24} />}
+        </button>
+      </header>
+
+      {/* --- Mobile Menu Overlay with Background Blur --- */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="lg:hidden fixed inset-0 z-40 bg-background/80 backdrop-blur-lg"
+          >
+            <div className="flex flex-col items-center justify-center h-full space-y-8">
+              {mobileNavLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-text-primary text-3xl font-sans"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 

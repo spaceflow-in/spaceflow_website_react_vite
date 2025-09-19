@@ -4,25 +4,25 @@ import React from 'react';
 import AnimatedCounter from './AnimatedCounter';
 
 const statsData = [
-    { value: 100, label: 'Projects Done' },
-    { value: 50, label: 'Happy Clients' },
-    { value: 10, label: 'Years of Experience' },
-    { value: 99, label: 'Success Rate', suffix: '%' },
+    { value: 5, label: 'Years of expertise' },
+    { value: 50, label: 'Happy Customers' },
+    { value: 3, suffix: 'L+', label: 'Sqft Delivered Successfully' },
+    { value: 15, label: 'Cities all over India' },
 ];
 
 const Stats: React.FC = () => {
     return (
-        <section className="bg-background py-16 sm:py-24">
+        <section className="bg-background">
             <div className="max-w-screen-xl mx-auto px-8">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-10 text-left">
                     {statsData.map((stat) => (
                         <div key={stat.label}>
-                            <h3 className="text-4xl sm:text-5xl font-bold text-primary">
+                            <h3 className="text-7xl  font-light text-primary">
                                 {/* Use the animated counter for the number */}
                                 <AnimatedCounter to={stat.value} />
                                 {stat.suffix || '+'}
                             </h3>
-                            <p className="text-sm sm:text-base text-text-secondary mt-2">
+                            <p className="text-lg  mt-2">
                                 {stat.label}
                             </p>
                         </div>

@@ -18,7 +18,7 @@ const Accordion: React.FC<AccordionProps> = ({ question, answer, isOpen, onClick
                 onClick={onClick}
                 className="w-full flex justify-between items-center p-6 text-left"
             >
-                <h3 className="text-lg font-medium text-black">{question}</h3>
+                <h3 className="text-xl font-medium text-black">{question}</h3>
                 <div className="flex-shrink-0">
                     {isOpen ? <Minus size={24} className="text-gray-500" /> : <Plus size={24} className="text-gray-500" />}
                 </div>
@@ -37,7 +37,7 @@ const Accordion: React.FC<AccordionProps> = ({ question, answer, isOpen, onClick
                         transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
                         className="overflow-hidden"
                     >
-                        <p className="p-6 pt-0 text-gray-600">
+                        <p className="text-left text-lg font-light p-6 pt-0 text-gray-600">
                             {answer}
                         </p>
                     </motion.div>

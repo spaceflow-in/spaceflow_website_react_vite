@@ -119,21 +119,26 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 // Import your project images
-import projectImage1 from '../images/portfolio1.jpg';
-import projectImage2 from '../images/portfolio2.jpg';
-import projectImage3 from '../images/portfolio3.jpg';
-import projectImage4 from '../images/portfolio4.jpg';
-// Add more images for a longer scroll
-import projectImage5 from '../images/meeting-room.jpg'; // Example of adding more
-import projectImage6 from '../images/meeting-room-2.jpg'; // Example of adding more
+// import aboutUs1 from '../images/about_us_1.png';
+import aboutUs2 from '../images/about_us_2.png';
+import aboutUs3 from '../images/about_us_3.png';
+import aboutUs4 from '../images/about_us_4.png';
+import aboutUs5 from '../images/about_us_5.png';
+// import aboutUs6 from '../images/about_us_6.png';
+import aboutUs7 from '../images/about_us_7.png';
+// import aboutUs8 from '../images/about_us_8.png';
+
+// Array of images for the marquee
 
 const images = [
-  projectImage1,
-  projectImage2,
-  projectImage3,
-  projectImage4,
-  projectImage5,
-  projectImage6,
+  // aboutUs1,
+  aboutUs2,
+  aboutUs3,
+  aboutUs4,
+  aboutUs5,
+  // aboutUs6,
+  aboutUs7,
+  // aboutUs8,
 ];
 
 const About: React.FC = () => {
@@ -178,7 +183,7 @@ const About: React.FC = () => {
 
   return (
     <section id="about" className="py-24 bg-background overflow-hidden">
-      <div className="max-w-screen-xl mx-auto px-8">
+      <div className="max-w-screen-xl text-left mx-auto px-8">
         {/* Top Section: Text Content */}
         <motion.div
           className="flex flex-col lg:flex-row items-start justify-between gap-12 mb-16"
@@ -188,15 +193,15 @@ const About: React.FC = () => {
           viewport={{ once: true, amount: 0.5 }}
         >
           <div className="lg:w-1/2">
-            <div className="bg-yellow-400 text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
+            <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
               About us
             </div>
-            <h2 className="text-4xl lg:text-5xl font-medium leading-tight">
+            <h2 className="text-4xl lg:text-6xl font-medium leading-tight">
               Designing workplaces that drive performance and innovation
             </h2>
           </div>
-          <div className="lg:w-1/2 lg:pt-16">
-            <p className="text-lg text-text-secondary">
+          <div className="lg:w-1/2 lg:pt-16 lg:mt-45">
+            <p className="text-lg font-extralight lg:text-2xl text-text-secondary">
               At Spaceflow, we blend smart planning with smart design to create bespoke office spaces that reflect each client's unique identity.
             </p>
           </div>
@@ -217,7 +222,7 @@ const About: React.FC = () => {
               key={index}
               src={img}
               alt={`Office interior ${index + 1}`}
-              className="w-auto h-64 rounded-xl shadow-lg object-cover"
+              className="bg-center w-100 h-130 rounded-xl shadow-lg object-cover"
             />
           ))}
         </div>

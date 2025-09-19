@@ -3,10 +3,30 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 
 // Import your portfolio images
-import decathlonImg from '../images/portfolio1.jpg';
-import atticSpaceImg from '../images/portfolio2.jpg';
-import grantThorntonImg from '../images/portfolio3.jpg';
-import cholamandalamImg from '../images/portfolio4.jpg';
+import decathlonImg1 from '../images/decathlon_1.png';
+import decathlonImg2 from '../images/decathlon_2.png';
+import decathlonImg3 from '../images/decathlon_3.png';
+import decathlonImg4 from '../images/decathlon_4.png';
+import decathlonImg5 from '../images/decathlon_5.png';
+import atticSpaceImg1 from '../images/attic_1.png';
+import atticSpaceImg2 from '../images/attic_2.png';
+import atticSpaceImg3 from '../images/attic_3.png';
+import atticSpaceImg4 from '../images/attic_4.png';
+import atticSpaceImg5 from '../images/attic_5.png';
+import grantThorntonImg1 from '../images/gt_1.png';
+import grantThorntonImg2 from '../images/gt_2.png';
+import grantThorntonImg3 from '../images/gt_3.png';
+import grantThorntonImg4 from '../images/gt_4.png';
+import grantThorntonImg5 from '../images/gt_5.png';
+import grantThorntonImg6 from '../images/gt_6.png';
+import grantThorntonImg7 from '../images/gt_7.png';
+import grantThorntonImg8 from '../images/gt_8.png';
+
+import cholamandalamImg1 from '../images/chola_1.png';
+import cholamandalamImg2 from '../images/chola_2.png';
+import cholamandalamImg3 from '../images/chola_3.png';
+import cholamandalamImg4 from '../images/chola_4.jpeg';
+import cholamandalamImg5 from '../images/chola_5.jpeg';
 
 type Project = {
   images: string;
@@ -22,10 +42,10 @@ type Project = {
 // ];
 
 const projectsData: Project[] = [
-  { images: [decathlonImg], name: 'DECATHLON', location: 'BENGALURU' },
-  { images: [atticSpaceImg], name: 'ATTIC SPACE', location: 'BENGALURU' },
-  { images: [grantThorntonImg], name: 'GRANT THORNTON', location: 'KOLKATA' },
-  { images: [cholamandalamImg], name: 'CHOLAMANDALAM MS', location: 'NEW DELHI' },
+  { images: [decathlonImg1, decathlonImg2, decathlonImg3, decathlonImg4, decathlonImg5], name: 'DECATHLON', location: 'BENGALURU' },
+  { images: [atticSpaceImg1, atticSpaceImg2, atticSpaceImg3, atticSpaceImg4, atticSpaceImg5], name: 'ATTIC SPACE', location: 'BENGALURU' },
+  { images: [grantThorntonImg1, grantThorntonImg2, grantThorntonImg3, grantThorntonImg4, grantThorntonImg5, grantThorntonImg6, grantThorntonImg7, grantThorntonImg8], name: 'GRANT THORNTON', location: 'KOLKATA' },
+  { images: [cholamandalamImg1, cholamandalamImg2, cholamandalamImg3, cholamandalamImg4, cholamandalamImg5], name: 'CHOLAMANDALAM MS', location: 'NEW DELHI' },
 ];
 
 // Animation variants for the container to stagger children
@@ -130,7 +150,7 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
           const duplicatedItem = item.cloneNode(true);
           scrollerRef.current?.appendChild(duplicatedItem);
         });
-        containerRef.current.style.setProperty("--animation-duration", "30s");
+        containerRef.current.style.setProperty("--animation-duration", "60s");
         containerRef.current.style.setProperty("--animation-direction", "forwards");
         setStart(true);
       }
@@ -189,13 +209,13 @@ const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
 const Portfolio: React.FC = () => {
   return (
     <section id="work" className="py-24 bg-white">
-      <div className="max-w-screen-xl mx-auto px-8">
+      <div className="max-w-screen-xl mx-auto px-2">
         <div className="text-center mb-16">
-          <div className="bg-yellow-400 text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
+          <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
             Our Work
           </div>
-          <h2 className="text-4xl lg:text-5xl font-medium mb-4 text-black">Designed by Spaceflow</h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-4xl lg:text-6xl font-medium mb-4 text-black">Designed by Spaceflow</h2>
+          <p className="text-lg lg:text-2xl font-extralight text-gray-600 ">
             Discover the workplaces we've brought to life.
           </p>
         </div>

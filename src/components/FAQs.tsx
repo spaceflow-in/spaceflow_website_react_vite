@@ -8,25 +8,26 @@ import Accordion from './Accordion';
 // --- Data for FAQs ---
 const faqsData = [
     {
+        question: "Where are you based in?",
+        answer: "We primarily serve Bangalore and Mumbai, but depending on the project, we may be able to travel further. Get in touch to discuss your location and project needs."
+    },
+    {
         question: "How long does a typical project take?",
-        answer: "Project timelines vary based on scope and complexity, but a typical office design and build project can take anywhere from 8 to 16 weeks from conception to completion."
+        answer: "At SpaceFlow, the duration of a project depends on the size and complexity of the office design. On average, smaller redesigns can take 2–4 weeks, while full office fit-outs typically range from 6–12 weeks. We’ll provide a detailed timeline once we’ve assessed your space and requirements."
     },
     {
         question: "Do you offer free quotes?",
-        answer: "Yes, we provide a comprehensive, no-obligation quote after our initial consultation where we discuss your needs, budget, and vision for the new workspace."
+        answer: "Yes! SpaceFlow offers free, no-obligation quotes. After an initial consultation and understanding your design goals, we’ll provide a detailed estimate covering design, materials, and execution costs."
     },
     {
         question: "Do you provide post-handover Support?",
-        answer: "Absolutely. We offer post-handover support to ensure you are completely satisfied with your new office. We address any issues promptly and efficiently."
+        answer: "Yes, we provide a comprehensive 6 moths of post-handover support. Any warranties are covered during this period. This is part of our service agreement signed before starting any project"
     },
     {
         question: "How do I get started with a project?",
-        answer: "Getting started is easy! Simply use the 'Get in touch' button to send us an enquiry, and our team will contact you to schedule an initial consultation."
+        answer: "Getting started with SpaceFlow is simple. Just reach out through our website or give us a call to schedule your initial consultation. We’ll discuss your goals, assess your space, and take care of everything from concept to completion."
     },
-    {
-        question: "Where are you based in?",
-        answer: "Our headquarters are located in Bengaluru, but we have successfully completed projects for clients all across India, managing everything remotely and on-site."
-    }
+
 ];
 
 const FAQs: React.FC = () => {
@@ -44,14 +45,14 @@ const FAQs: React.FC = () => {
                 <div className="flex flex-col lg:flex-row gap-16">
 
                     {/* Left Column: Title and CTA */}
-                    <div className="lg:w-1/3">
-                        <div className="bg-yellow-400 text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
+                    <div className="lg:w-1/3 text-left">
+                        <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
                             FAQs
                         </div>
                         <h2 className="text-4xl lg:text-5xl font-medium text-black mb-6">
                             Answering your questions
                         </h2>
-                        <p className="text-lg text-gray-600 mb-8">
+                        <p className="text-lg lg:text-2xl font-extralight text-gray-600 mb-8">
                             Got more questions? Send us your enquiry below
                         </p>
                         <button

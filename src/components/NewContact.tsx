@@ -2,21 +2,20 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Twitter } from 'lucide-react';
+import { Instagram, Linkedin, Twitter } from 'lucide-react';
 
 // Import the image for the contact section
-import contactImage from '../images/conference-room.jpg'; // Make sure to add an appropriate image
+import contactImage from '../images/intouch.png'; // Make sure to add an appropriate image
 
 // --- Data for Contact Details and Social Links ---
 const contactDetails = [
-    { label: "Office", value: "150 HSR Layout, Bangalore, Karnataka" },
-    { label: "Email", value: "hello@Spaceflow.com", href: "mailto:hello@Spaceflow.com" },
-    { label: "Telephone", value: "8924786484", href: "tel:+918924786484" },
+    { label: "Office", value: "234, 9th Main, 16th Cross, HSR Layout, Sec 6, Bengaluru" },
+    { label: "Email", value: "hello@spaceflow.in", href: "mailto:hello@spaceflow.in" },
+    { label: "Telephone", value: "9599596773", href: "tel:+919599596773" },
 ];
 
 const socialLinks = [
-    { icon: Instagram, href: "#" },
-    { icon: Twitter, href: "#" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/spaceflow-in" },
 ];
 
 const Contact: React.FC = () => {
@@ -31,11 +30,11 @@ const Contact: React.FC = () => {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
                 >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-left">
 
                         {/* Left Column: Text Content */}
                         <div className="text-white">
-                            <div className="bg-primary text-background font-sans font-semibold text-sm inline-block px-4 py-1.5 rounded-full mb-4">
+                            <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1.5 rounded-full mb-4">
                                 Contact
                             </div>
                             <h2 className="text-4xl lg:text-5xl font-medium mb-6">
@@ -75,7 +74,7 @@ const Contact: React.FC = () => {
                             <img
                                 src={contactImage}
                                 alt="Modern office hallway"
-                                className="w-full h-full object-cover rounded-2xl"
+                                className="w-full h-full bg-center rounded-2xl"
                             />
                         </div>
                     </div>

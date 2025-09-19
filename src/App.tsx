@@ -17,7 +17,7 @@ function App() {
     <div className="text-center">
 
       <Header />
-      <main>
+      <main className='pt-28'>
         <Hero />
         <About />
         <Stats />

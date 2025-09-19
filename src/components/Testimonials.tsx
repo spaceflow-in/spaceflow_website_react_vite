@@ -14,12 +14,16 @@ import 'swiper/css/autoplay';
 // Import our custom hook
 import { useMediaQuery } from '../hooks/useMediaQuery';
 
+import avatar1 from '../images/avatar_1.jpg';
+import avatar2 from '../images/avatar_2.jpeg';
+import avatar3 from '../images/avatar_3.jpeg';
+
 // --- Data for Testimonials ---
 type Testimonial = {
     quote: string;
     name: string;
     title: string;
-    avatar: string;
+    avatar: any;
 };
 
 const testimonialsData: Testimonial[] = [
@@ -27,27 +31,27 @@ const testimonialsData: Testimonial[] = [
         quote: "Brilliant service from start to finish. The team was professional, communicative, and delivered an office space that exceeded expectations.",
         name: "Rangaswamy SK",
         title: "CFO - Cholamandalam MS",
-        avatar: "https://i.pravatar.cc/150?img=1" // Placeholder avatar
+        avatar: avatar3  // Placeholder avatar
     },
     {
         quote: "Space Flow completely reimagined our office. The design is modern, functional, and perfectly suited to our team's needs. Highly recommend!",
         name: "Chandrashekar Rao",
         title: "CEO - Attic Space",
-        avatar: "https://i.pravatar.cc/150?img=2"
+        avatar: avatar2
     },
     {
         quote: "I couldn't be happier with our new workplace. The attention to detail and quality of work were outstanding. Space Flow made the process stress-free!",
         name: "Saniel Goleccha",
         title: "CEO - Work Square",
-        avatar: "https://i.pravatar.cc/150?img=3"
+        avatar: avatar1
     },
     // Add a few more for a smoother desktop scroll
-    {
-        quote: "The transformation of our workspace has significantly boosted employee morale and productivity. A fantastic investment.",
-        name: "Priya Sharma",
-        title: "HR Director - Innovate Inc.",
-        avatar: "https://i.pravatar.cc/150?img=4"
-    },
+    // {
+    //     quote: "The transformation of our workspace has significantly boosted employee morale and productivity. A fantastic investment.",
+    //     name: "Priya Sharma",
+    //     title: "HR Director - Innovate Inc.",
+    //     avatar: "https://i.pravatar.cc/150?img=4"
+    // },
 ];
 
 // --- Reusable Testimonial Card Component ---
@@ -95,14 +99,14 @@ const Testimonials: React.FC = () => {
 
     return (
         <section id="testimonials" className="py-24 bg-white">
-            <div className="max-w-screen-xl mx-auto px-8">
+            <div className="max-w-screen-xl mx-auto px-2">
                 {/* Section Header */}
                 <div className="text-center mb-16">
-                    <div className="bg-yellow-400 text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4" faq_mobile>
+                    <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4" faq_mobile>
                         Testimonials
                     </div>
-                    <h2 className="text-4xl lg:text-5xl font-medium mb-4 text-black">Hear from our clients</h2>
-                    <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+                    <h2 className="text-4xl lg:text-6xl font-medium mb-4 text-black">Hear from our clients</h2>
+                    <p className="text-lg lg:text-2xl font-extralight text-gray-600 max-w-3xl mx-auto">
                         Hear from our happy clients about their experience working with Spaceflow and the quality of our craftsmanship.
                     </p>
                 </div>
