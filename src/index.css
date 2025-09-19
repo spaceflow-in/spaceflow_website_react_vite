@@ -14,25 +14,47 @@ code {
 
 @import "tailwindcss";
 
-/* Define custom base styles for the entire application */
+@theme {
+  --color-background: '#0D0D0D';
+  --color-primary: '#E4B400';
+  --color-text-primary: '#FFFFFF';
+  --color-text-secondary: '#A3A3A3';
+  --font-sans: Manrope, sans-serif;
+  --font-body: Manrope, sans-serif;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-[#121212] text-white;
-    font-family: 'Prata', serif;
+    /* Apply the new background, default text color, and body font */
+    @apply bg-background text-text-primary font-body;
   }
   
-  /* Applying the custom gold gradient as the default for all heading tags */
+  /* The old h1-h6 text gradient rule has been DELETED */
+
+  /* Set the default heading font */
   h1, h2, h3, h4, h5, h6 {
-    @apply text-transparent bg-clip-text;
-    background-image: linear-gradient(to right, #D2AC47, #F7EF8A, #AC8625);
-    font-family: 'Prata', serif;
-    font-weight: 400;
+    @apply font-sans;
+  }
+}
+
+@layer utilities {
+  /*
+    The keyframe for the infinite scroll.
+    It translates the container by -50% of its own width.
+    Since the content is duplicated, this creates a seamless loop.
+    The -0.5rem accounts for half of the gap between items.
+  */
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
   }
 
-  p, li {
-    @apply text-[#CFCBBF] leading-relaxed font-extralight; /* font-extralight is weight 200 */
+  .animate-scroll {
+    /* The CSS variables will be set by the React component */
+    animation: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
   }
 }

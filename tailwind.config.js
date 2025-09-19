@@ -1,7 +1,7 @@
+// File: tailwind.config.js (Updated)
+
 /** @type {import('tailwindcss').Config} */
 export default {
-  // Content path is now often configured directly in the plugin, 
-  // but keeping it here is standard practice.
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -9,22 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary-yellow': '#FFD100',
-        'dark-bg': '#1A1A1A',
-        'text-primary': '#333333',
-        'text-secondary': '#555555',
-        'border-light': '#EAEAEA',
+        background: '#0D0D0D', // New near-black background
+        primary: '#E4B400',    // New vibrant gold accent
+        'text-primary': '#FFFFFF',
+        'text-secondary': '#A3A3A3', // New subtle light grey for paragraphs
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      },
-      container: {
-        center: true,
-        padding: {
-          DEFAULT: '1rem',
-          md: '2rem',
-          lg: '4rem',
-        },
+        // 'sans' is now Clash Display for headings
+        sans: ['Clash Display', 'sans-serif'], 
+        // We add a new utility 'font-body' for Satoshi
+        body: ['Satoshi', 'sans-serif'],
       },
     },
   },
