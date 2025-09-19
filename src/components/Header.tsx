@@ -252,7 +252,7 @@ import logo from '../images/spaceflow.avif';
 const mobileNavLinks = [
   { href: '#about', label: 'About' },
   { href: '#work', label: 'Our Work' },
-  { href: '#services', label: 'Services' },
+  { href: '#testimonials', label: 'Testimonials' },
   { href: '#faqs', label: 'FAQs' },
   { href: '#contact', label: 'Contact' },
 ];
