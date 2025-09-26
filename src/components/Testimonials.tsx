@@ -59,13 +59,13 @@ const testimonialsData: Testimonial[] = [
         quote: "After working together on 30+ projects, Space Flow feels less like a service provider and more like a trusted partner. Their dedication and seamless execution keep us coming back.",
         name: "Prathiroop M",
         title: "Head of Projects - Wakefit",
-        avatar: avatar5
+        avatar: avatar6
     },
     {
         quote: "From the very first meeting, Space Flow made us feel confident. Every detail was carefully considered, and the final result speaks for itself a workplace we love showing off!",
         name: "Amritanshu Anand",
         title: "Founder - Recruiter Flow",
-        avatar: avatar6
+        avatar: avatar5
     },
 
 ];
