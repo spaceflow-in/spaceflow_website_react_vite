@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from './components/Header.tsx';
 import About from './components/About.tsx';
-import Services from './components/Services.tsx';
-import Sustainability from './components/Sustainability.tsx';
+// import Services from './components/Services.tsx';
+// import Sustainability from './components/retired/Sustainability.tsx';
 import Portfolio from './components/Portfolio.tsx';
-import Workspaces from './components/Workspaces.tsx';
-import Process from './components/Process.tsx';
+// import Workspaces from './components/retired/Workspaces.tsx';
+// import Process from './components/retired/Process.tsx';
 import Contact from './components/NewContact.tsx';
 import Hero from './components/Hero.tsx';
 import Stats from './components/Stats.tsx';

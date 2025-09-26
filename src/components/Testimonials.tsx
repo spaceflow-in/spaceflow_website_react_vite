@@ -1,7 +1,7 @@
 // File: src/components/Testimonials.tsx (New File)
 
 import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { Star } from 'lucide-react';
 
 // Import Swiper for mobile
@@ -17,6 +17,10 @@ import { useMediaQuery } from '../hooks/useMediaQuery';
 import avatar1 from '../images/avatar_1.jpg';
 import avatar2 from '../images/avatar_2.jpeg';
 import avatar3 from '../images/avatar_3.jpeg';
+import avatar4 from '../images/avatar_4.png';
+import avatar5 from '../images/avatar_5.jpeg';
+import avatar6 from '../images/avatar_6.jpeg';
+import { InfiniteTestimonials } from './ui/infinite-testimonials';
 
 // --- Data for Testimonials ---
 type Testimonial = {
@@ -45,18 +49,30 @@ const testimonialsData: Testimonial[] = [
         title: "CEO - Work Square",
         avatar: avatar1
     },
-    // Add a few more for a smoother desktop scroll
-    // {
-    //     quote: "The transformation of our workspace has significantly boosted employee morale and productivity. A fantastic investment.",
-    //     name: "Priya Sharma",
-    //     title: "HR Director - Innovate Inc.",
-    //     avatar: "https://i.pravatar.cc/150?img=4"
-    // },
+    {
+        quote: "Our experience with Space Flow exceeded expectations. Their precision, craftsmanship, and seamless process gave us a workspace we truly love.",
+        name: "Sarthak Agarwal",
+        title: "Founder - Material Depot",
+        avatar: avatar4
+    },
+    {
+        quote: "After working together on 30+ projects, Space Flow feels less like a service provider and more like a trusted partner. Their dedication and seamless execution keep us coming back.",
+        name: "Prathiroop M",
+        title: "Head of Projects - Wakefit",
+        avatar: avatar5
+    },
+    {
+        quote: "From the very first meeting, Space Flow made us feel confident. Every detail was carefully considered, and the final result speaks for itself a workplace we love showing off!",
+        name: "Amritanshu Anand",
+        title: "Founder - Recruiter Flow",
+        avatar: avatar6
+    },
+
 ];
 
 // --- Reusable Testimonial Card Component ---
 const TestimonialCard: React.FC<{ testimonial: Testimonial }> = ({ testimonial }) => (
-    <div className="bg-white text-black p-8 rounded-2xl shadow-xl h-full flex flex-col">
+    <div className="bg-white text-black p-8 border-1 border-[#E6E6E6] rounded-2xl h-full flex flex-col mb-10">
         <div className="flex gap-1 mb-4">
             {[...Array(5)].map((_, i) => <Star key={i} size={20} className="text-yellow-400 fill-yellow-400" />)}
         </div>
@@ -113,42 +129,27 @@ const Testimonials: React.FC = () => {
             </div>
 
             {/* Conditional Rendering: Marquee for Desktop, Slider for Mobile */}
-            {
-                isDesktop ? (
-                    <div
-                        ref={containerRef}
-                        className="scroller w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
+            {isDesktop ? (
+                <InfiniteTestimonials items={testimonialsData} pauseOnHover={false} />
+            ) : (
+                <div className="max-w-screen-xl mx-auto px-8">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        spaceBetween={30}
+                        slidesPerView={1}
+                        loop={true}
+                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        pagination={{ clickable: true }}
+                        className="pb-12" // Add padding-bottom for pagination dots
                     >
-                        <ul
-                            ref={scrollerRef}
-                            className={`flex w-max min-w-full shrink-0 flex-nowrap gap-8 py-4 ${start ? 'animate-scroll' : ''} hover:[animation-play-state:paused]`}
-                        >
-                            {testimonialsData.map((testimonial, index) => (
-                                <li key={index} className="w-[400px] flex-shrink-0">
-                                    <TestimonialCard testimonial={testimonial} />
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
-                ) : (
-                    <div className="max-w-screen-xl mx-auto px-8">
-                        <Swiper
-                            modules={[Pagination, Autoplay]}
-                            spaceBetween={30}
-                            slidesPerView={1}
-                            loop={true}
-                            autoplay={{ delay: 5000, disableOnInteraction: false }}
-                            pagination={{ clickable: true }}
-                            className="pb-12" // Add padding-bottom for pagination dots
-                        >
-                            {testimonialsData.map((testimonial, index) => (
-                                <SwiperSlide key={index}>
-                                    <TestimonialCard testimonial={testimonial} />
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </div>
-                )
+                        {testimonialsData.map((testimonial, index) => (
+                            <SwiperSlide key={index}>
+                                <TestimonialCard testimonial={testimonial} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+            )
             }
             <style>{`
         .swiper-pagination-bullet {

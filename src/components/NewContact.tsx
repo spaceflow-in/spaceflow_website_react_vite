@@ -11,7 +11,7 @@ import contactImage from '../images/intouch.png'; // Make sure to add an appropr
 const contactDetails = [
     { label: "Office", value: "234, 9th Main, 16th Cross, HSR Layout, Sec 6, Bengaluru" },
     { label: "Email", value: "hello@spaceflow.in", href: "mailto:hello@spaceflow.in" },
-    { label: "Telephone", value: "9599596773", href: "tel:+919599596773" },
+    { label: "Telephone", value: "9620346290", href: "tel:+919620346290" },
 ];
 
 const socialLinks = [
@@ -41,10 +41,10 @@ const Contact: React.FC = () => {
                                 Get in touch
                             </h2>
                             <p className="text-lg text-text-secondary max-w-md mb-8">
-                                For any inquiries or to explore your vision further, we invite you to contact our professional team using the details provided below.
+                                For any inquiries or to explore your vision further, we invite you to contact our professional team using the details provided below or send an enquiry.
                             </p>
 
-                            {/* Contact Details */}
+                            {/* Contact Details
                             <div className="space-y-6 border-t border-gray-700 pt-8">
                                 {contactDetails.map((detail) => (
                                     <div key={detail.label} className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
@@ -54,7 +54,39 @@ const Contact: React.FC = () => {
                                         </a>
                                     </div>
                                 ))}
+                            </div> */}
+
+                            {/* --- MODIFIED SECTION START --- */}
+                            <div className="border-t border-gray-700 pt-8">
+
+                                {/* "Reach Us" Subheading */}
+                                {/* <h4 className="font-extralight text-white mb-6 underline">Reach Us</h4> */}
+
+                                {/* Contact Details */}
+                                <div className="space-y-6">
+                                    {contactDetails.map((detail) => (
+                                        <div key={detail.label} className="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+                                            <p className="text-text-secondary">{detail.label}</p>
+                                            <a href={detail.href || '#'} className="font-medium text-white text-left sm:text-right hover:text-primary transition-colors">
+                                                {detail.value}
+                                            </a>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                {/* "OR" Separator */}
+                                <div className="flex items-center gap-4 my-8">
+                                    <div className="flex-grow h-px bg-gray-700"></div>
+                                    <span className="text-text-secondary text-sm">OR</span>
+                                    <div className="flex-grow h-px bg-gray-700"></div>
+                                </div>
+
+                                {/* Send an Enquiry Button */}
+                                <button className="w-full bg-[#FFEA00] text-black font-sans font-bold py-4 rounded-full text-center hover:bg-yellow-300 transition-colors" data-tally-open="mBNgdQ" data-tally-layout="modal" data-tally-width="650" data-tally-emoji-text="👋" data-tally-emoji-animation="wave" data-tally-auto-close="3000" data-tally-form-events-forwarding="1">
+                                    Send an Enquiry
+                                </button>
                             </div>
+                            {/* --- MODIFIED SECTION END --- */}
 
                             {/* Social Links */}
                             <div className="flex items-center gap-6 mt-12 border-t border-gray-700 pt-8">
@@ -67,6 +99,7 @@ const Contact: React.FC = () => {
                                     ))}
                                 </div>
                             </div>
+
                         </div>
 
                         {/* Right Column: Image */}
@@ -74,7 +107,7 @@ const Contact: React.FC = () => {
                             <img
                                 src={contactImage}
                                 alt="Modern office hallway"
-                                className="w-full h-full bg-center rounded-2xl"
+                                className="w-full h-full bg-center object-fill rounded-2xl"
                             />
                         </div>
                     </div>

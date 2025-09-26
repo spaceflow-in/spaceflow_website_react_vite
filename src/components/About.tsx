@@ -117,63 +117,74 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { InfiniteMarquee } from './ui/infinite-marquee';
+
 
 // Import your project images
-// import aboutUs1 from '../images/about_us_1.png';
-import aboutUs2 from '../images/about_us_2.png';
+import aboutUs1 from '../images/about_us_1.png';
+// import aboutUs2 from '../images/about_us_2.png';
 import aboutUs3 from '../images/about_us_3.png';
 import aboutUs4 from '../images/about_us_4.png';
 import aboutUs5 from '../images/about_us_5.png';
 // import aboutUs6 from '../images/about_us_6.png';
-import aboutUs7 from '../images/about_us_7.png';
-// import aboutUs8 from '../images/about_us_8.png';
+// import aboutUs7 from '../images/about_us_7.png';
+import aboutUs8 from '../images/about_us_8.png';
+import aboutUs9 from '../images/about_us_9.jpeg';
+import aboutUs10 from '../images/about_us_10.jpeg';
+import aboutUs11 from '../images/about_us_11.jpeg';
+import aboutUs12 from '../images/about_us_12.jpeg';
+
 
 // Array of images for the marquee
 
 const images = [
-  // aboutUs1,
-  aboutUs2,
+  aboutUs1,
+  // aboutUs2,
+  aboutUs8,
   aboutUs3,
+  aboutUs9,
   aboutUs4,
+  aboutUs10,
   aboutUs5,
+  aboutUs11,
   // aboutUs6,
-  aboutUs7,
-  // aboutUs8,
+  // aboutUs7,
+  aboutUs12,
 ];
 
 const About: React.FC = () => {
   // --- Start of Infinite Marquee Logic ---
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [start, setStart] = useState(false);
+  // const containerRef = useRef<HTMLDivElement>(null);
+  // const scrollerRef = useRef<HTMLDivElement>(null);
+  // const [start, setStart] = useState(false);
 
-  useEffect(() => {
-    // This function duplicates the items and sets up the animation
-    function addAnimation() {
-      if (containerRef.current && scrollerRef.current) {
-        const scrollerContent = Array.from(scrollerRef.current.children);
+  // useEffect(() => {
+  //   // This function duplicates the items and sets up the animation
+  //   function addAnimation() {
+  //     if (containerRef.current && scrollerRef.current) {
+  //       const scrollerContent = Array.from(scrollerRef.current.children);
 
-        // Duplicate each image and append it to the scroller
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          scrollerRef.current?.appendChild(duplicatedItem);
-        });
+  //       // Duplicate each image and append it to the scroller
+  //       scrollerContent.forEach((item) => {
+  //         const duplicatedItem = item.cloneNode(true);
+  //         scrollerRef.current?.appendChild(duplicatedItem);
+  //       });
 
-        // Set CSS variables for animation properties
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-        containerRef.current.style.setProperty("--animation-direction", "forwards"); // 'forwards' for left-to-right scroll
+  //       // Set CSS variables for animation properties
+  //       containerRef.current.style.setProperty("--animation-duration", "40s");
+  //       containerRef.current.style.setProperty("--animation-direction", "forwards"); // 'forwards' for left-to-right scroll
 
-        // Start the animation
-        setStart(true);
-      }
-    }
+  //       // Start the animation
+  //       setStart(true);
+  //     }
+  //   }
 
-    // Only run the setup if it hasn't started yet
-    if (!start) {
-      addAnimation();
-    }
-  }, [start]);
-  // --- End of Infinite Marquee Logic ---
+  //   // Only run the setup if it hasn't started yet
+  //   if (!start) {
+  //     addAnimation();
+  //   }
+  // }, [start]);
+  // // --- End of Infinite Marquee Logic ---
 
   // Animation variant for the text content
   const textVariants = {
@@ -209,7 +220,7 @@ const About: React.FC = () => {
       </div>
 
       {/* Bottom Section: Infinite Image Marquee */}
-      <div
+      {/* <div
         ref={containerRef}
         className="scroller w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]"
       >
@@ -226,7 +237,19 @@ const About: React.FC = () => {
             />
           ))}
         </div>
-      </div>
+      </div> */}
+      {/* Bottom Section: Now uses the InfiniteMarquee component */}
+      <InfiniteMarquee speed="slow" pauseOnHover={true}>
+        {images.map((img, index) => (
+          <li key={index} className="flex-shrink-0">
+            <img
+              src={img}
+              alt={`Office interior ${index + 1}`}
+              className="w-100 h-130 rounded-xl shadow-lg object-cover"
+            />
+          </li>
+        ))}
+      </InfiniteMarquee>
     </section>
   );
 };

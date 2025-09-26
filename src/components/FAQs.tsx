@@ -31,6 +31,13 @@ const faqsData = [
 ];
 
 const FAQs: React.FC = () => {
+    // Function to handle smooth scrolling to the contact section
+    const handleScrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     // State to track the currently open accordion index. `null` means all are closed.
     const [openAccordionIndex, setOpenAccordionIndex] = useState<number | null>(0);
 
@@ -50,7 +57,7 @@ const FAQs: React.FC = () => {
                             FAQs
                         </div>
                         <h2 className="text-4xl lg:text-5xl font-medium text-black mb-6">
-                            Answering your questions
+                            Everything you need to know
                         </h2>
                         <p className="text-lg lg:text-2xl font-extralight text-gray-600 mb-8">
                             Got more questions? Send us your enquiry below
@@ -58,6 +65,7 @@ const FAQs: React.FC = () => {
                         <button
                             className="group inline-flex items-center justify-center gap-4 bg-transparent border border-gray-300 text-black font-body px-4 py-3 rounded-full
                          hover:border-black transition-colors duration-300"
+                            onClick={handleScrollToContact}
                         >
                             <span>Get in touch</span>
                             <span className="bg-primary text-background w-10 h-10 rounded-full flex items-center justify-center

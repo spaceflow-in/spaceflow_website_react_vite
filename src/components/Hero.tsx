@@ -3,9 +3,23 @@
 import React from 'react';
 import heroImage from '../images/hero_image.png'; // NOTE: You should replace this with the new image
 import { ArrowUpRight, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
-    return (
+    // Function to handle smooth scrolling to the contact section
+    const handleScrollToContact = () => {
+        const contactSection = document.getElementById('contact');
+        if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+    return (<motion.div
+        // className="bg-[#1C1C1E] rounded-3xl p-8 md:p-12 lg:p-16"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+    >
         <section
             id="home"
             // Mobile: Full-bleed background image. Desktop: Standard background color.
@@ -32,6 +46,7 @@ const Hero: React.FC = () => {
                         </p>
                         <button
                             className="group inline-flex items-center justify-center gap-4 bg-transparent border border-white/50 text-white font-body px-4 py-3 rounded-full lg:text-gray-800 lg:border-gray-300 hover:border-white lg:hover:border-black transition-colors duration-300"
+                            onClick={handleScrollToContact}
                         >
                             <span>Contact Us</span>
                             <span className="bg-primary text-background w-10 h-10 rounded-full flex items-center justify-center
@@ -65,6 +80,7 @@ const Hero: React.FC = () => {
                 </div>
             </div>
         </section>
+    </motion.div>
     );
 };
 

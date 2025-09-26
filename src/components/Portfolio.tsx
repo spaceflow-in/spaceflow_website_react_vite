@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { InfiniteMarquee } from './ui/infinite-marquee';
 
 // Import your portfolio images
 import decathlonImg1 from '../images/decathlon_1.png';
@@ -28,8 +28,15 @@ import cholamandalamImg3 from '../images/chola_3.png';
 import cholamandalamImg4 from '../images/chola_4.jpeg';
 import cholamandalamImg5 from '../images/chola_5.jpeg';
 
+import atImg1 from '../images/at_1.png';
+import atImg2 from '../images/at_2.png';
+import atImg3 from '../images/at_3.png';
+import atImg4 from '../images/at_4.png';
+import atImg5 from '../images/at_5.png';
+
+
 type Project = {
-  images: string;
+  images: string[];
   name: string;
   location: string;
 };
@@ -46,24 +53,25 @@ const projectsData: Project[] = [
   { images: [atticSpaceImg1, atticSpaceImg2, atticSpaceImg3, atticSpaceImg4, atticSpaceImg5], name: 'ATTIC SPACE', location: 'BENGALURU' },
   { images: [grantThorntonImg1, grantThorntonImg2, grantThorntonImg3, grantThorntonImg4, grantThorntonImg5, grantThorntonImg6, grantThorntonImg7, grantThorntonImg8], name: 'GRANT THORNTON', location: 'KOLKATA' },
   { images: [cholamandalamImg1, cholamandalamImg2, cholamandalamImg3, cholamandalamImg4, cholamandalamImg5], name: 'CHOLAMANDALAM MS', location: 'NEW DELHI' },
+  { images: [atImg1, atImg2, atImg3, atImg4, atImg5], name: 'AT KEARNEY', location: 'GURUGRAM' },
 ];
 
 // Animation variants for the container to stagger children
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3, // Each child will animate 0.3s after the previous one
-    },
-  },
-};
+// const containerVariants = {
+//   hidden: { opacity: 0 },
+//   visible: {
+//     opacity: 1,
+//     transition: {
+//       staggerChildren: 0.3, // Each child will animate 0.3s after the previous one
+//     },
+//   },
+// };
 
 // Animation variants for each card
-const cardVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-};
+// const cardVariants = {
+//   hidden: { opacity: 0, y: 50 },
+//   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+// };
 
 
 // const Portfolio: React.FC = () => {
@@ -138,68 +146,110 @@ const cardVariants = {
 
 // --- Reusable ProjectCard Component with Infinite Marquee ---
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const scrollerRef = useRef<HTMLDivElement>(null);
-  const [start, setStart] = useState(false);
+  // const containerRef = useRef<HTMLDivElement>(null);
+  // const scrollerRef = useRef<HTMLDivElement>(null);
+  // const [start, setStart] = useState(false);
 
-  useEffect(() => {
-    function addAnimation() {
-      if (containerRef.current && scrollerRef.current) {
-        const scrollerContent = Array.from(scrollerRef.current.children);
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          scrollerRef.current?.appendChild(duplicatedItem);
-        });
-        containerRef.current.style.setProperty("--animation-duration", "60s");
-        containerRef.current.style.setProperty("--animation-direction", "forwards");
-        setStart(true);
-      }
-    }
-    if (!start) {
-      addAnimation();
-    }
-  }, [start]);
+  // useEffect(() => {
+  //   function addAnimation() {
+  //     if (containerRef.current && scrollerRef.current) {
+  //       const scrollerContent = Array.from(scrollerRef.current.children);
+  //       scrollerContent.forEach((item) => {
+  //         const duplicatedItem = item.cloneNode(true);
+  //         scrollerRef.current?.appendChild(duplicatedItem);
+  //       });
+  //       containerRef.current.style.setProperty("--animation-duration", "60s");
+  //       containerRef.current.style.setProperty("--animation-direction", "forwards");
+  //       setStart(true);
+  //     }
+  //   }
+  //   if (!start) {
+  //     addAnimation();
+  //   }
+  // }, [start]);
 
+  // return (
+  //   <a className="block relative group">
+  //     {/* --- Marquee Image Background --- */}
+  //     <div
+  //       ref={containerRef}
+  //       className="relative h-[450px] overflow-hidden rounded-2xl shadow-2xl shadow-black/30 [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]"
+  //     >
+  //       <div
+  //         ref={scrollerRef}
+  //         className={`absolute top-0 left-0 flex w-max min-w-full shrink-0 flex-nowrap gap-4 ${start ? 'animate-scroll' : ''} group-hover:[animation-play-state:paused]`}
+  //       >
+  //         {project.images.map((img, index) => (
+  //           <img key={index} src={img} alt={`${project.name} image ${index + 1}`} className="h-[450px] w-auto object-cover" />
+  //         ))}
+  //         {/* Duplicated content is added by useEffect */}
+  //       </div>
+  //     </div>
+
+  //     {/* --- UI Overlays --- */}
+  //     {/* Desktop-only: White circular cutout with text */}
+  //     <div className="hidden lg:block">
+  //       <div className="absolute -bottom-4 -right-4 w-100 h-26  bg-black/20 backdrop-blur-sm rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-[1.2]" />
+  //       <div className="absolute bottom-4 right-8 mr-20 text-right z-10 text-white">
+  //         <h3 className="font-sans font-semibold text-2xl leading-tight">{project.name}</h3>
+  //         <p className="text-white font-extralight">-{project.location}</p>
+  //       </div>
+  //       <div className="absolute bottom-4 right-8 w-14 h-14 bg-black rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+  //         <ArrowUpRight size={28} className="text-white" />
+  //       </div>
+  //     </div>
+
+  //     {/* Mobile-only: Text and Arrow */}
+  //     <div className="lg:hidden absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end">
+  //       <div className="z-10 text-white p-2 bg-black/20 backdrop-blur-sm rounded-lg">
+  //         <h3 className="font-sans font-semibold text-2xl leading-tight">{project.name}</h3>
+  //         <p className="text-gray-300 text-base">-{project.location}</p>
+  //       </div>
+  //       <div className="bg-white text-background w-14 h-14 rounded-full flex items-center justify-center z-10">
+  //         <ArrowUpRight size={28} />
+  //       </div>
+  //     </div>
+  //   </a>
+  // );
   return (
     <a href="#" className="block relative group">
       {/* --- Marquee Image Background --- */}
-      <div
-        ref={containerRef}
-        className="relative h-[450px] overflow-hidden rounded-2xl shadow-2xl shadow-black/30 [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]"
-      >
-        <div
-          ref={scrollerRef}
-          className={`absolute top-0 left-0 flex w-max min-w-full shrink-0 flex-nowrap gap-4 ${start ? 'animate-scroll' : ''} group-hover:[animation-play-state:paused]`}
-        >
+      <div className="relative h-[450px] rounded-2xl shadow-2xl shadow-black/30">
+        {/*
+          MODIFICATION: Replaced the complex div structure with the InfiniteMarquee component.
+          The pauseOnHover prop is handled automatically.
+        */}
+        <InfiniteMarquee speed="slow" pauseOnHover={false} direction="left">
           {project.images.map((img, index) => (
-            <img key={index} src={img} alt={`${project.name} image ${index + 1}`} className="h-[450px] w-auto object-cover" />
+            <li key={index} className="flex-shrink-0">
+              <img src={img} alt={`${project.name} image ${index + 1}`} className="h-[450px] w-auto object-cover" />
+            </li>
           ))}
-          {/* Duplicated content is added by useEffect */}
-        </div>
+        </InfiniteMarquee>
       </div>
 
-      {/* --- UI Overlays --- */}
-      {/* Desktop-only: White circular cutout with text */}
+      {/* --- UI Overlays (Unchanged) --- */}
+      {/* Desktop-only */}
       <div className="hidden lg:block">
-        <div className="absolute -bottom-4 -right-4 w-100 h-26  bg-black/20 backdrop-blur-sm rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-[1.2]" />
+        <div className="absolute -bottom-4 -right-4 w-96 h-24 bg-black/20 backdrop-blur-sm rounded-lg transition-transform duration-500 ease-in-out group-hover:scale-[1.1]" />
         <div className="absolute bottom-4 right-8 mr-20 text-right z-10 text-white">
           <h3 className="font-sans font-semibold text-2xl leading-tight">{project.name}</h3>
           <p className="text-white font-extralight">-{project.location}</p>
         </div>
-        <div className="absolute bottom-4 right-8 w-14 h-14 bg-black rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        {/* <div className="absolute bottom-4 right-8 w-14 h-14 bg-black rounded-full flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           <ArrowUpRight size={28} className="text-white" />
-        </div>
+        </div> */}
       </div>
 
-      {/* Mobile-only: Text and Arrow */}
+      {/* Mobile-only */}
       <div className="lg:hidden absolute bottom-4 left-0 right-0 px-4 flex justify-between items-end">
         <div className="z-10 text-white p-2 bg-black/20 backdrop-blur-sm rounded-lg">
           <h3 className="font-sans font-semibold text-2xl leading-tight">{project.name}</h3>
           <p className="text-gray-300 text-base">-{project.location}</p>
         </div>
-        <div className="bg-white text-background w-14 h-14 rounded-full flex items-center justify-center z-10">
+        {/* <div className="bg-white text-background w-14 h-14 rounded-full flex items-center justify-center z-10">
           <ArrowUpRight size={28} />
-        </div>
+        </div> */}
       </div>
     </a>
   );
@@ -214,7 +264,7 @@ const Portfolio: React.FC = () => {
           <div className="bg-[#FFEA00] text-black font-sans font-semibold text-sm inline-block px-4 py-1 rounded-full mb-4">
             Our Work
           </div>
-          <h2 className="text-4xl lg:text-6xl font-medium mb-4 text-black">Designed by Spaceflow</h2>
+          <h2 className="text-4xl lg:text-6xl font-medium mb-4 text-black">Created by Spaceflow</h2>
           <p className="text-lg lg:text-2xl font-extralight text-gray-600 ">
             Discover the workplaces we've brought to life.
           </p>
@@ -222,15 +272,15 @@ const Portfolio: React.FC = () => {
 
         <div className="flex flex-col gap-12 lg:gap-24">
           {projectsData.map((project, index) => (
-            <motion.div
-              key={project.name + index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true, amount: 0.2 }}
-            >
-              <ProjectCard project={project} />
-            </motion.div>
+            // <motion.div
+            //   key={project.name + index}
+            //   initial={{ opacity: 0, y: 50 }}
+            //   whileInView={{ opacity: 1, y: 0 }}
+            //   transition={{ duration: 0.6, delay: index * 0.2 }}
+            //   viewport={{ once: true, amount: 0.2 }}
+            // >
+            <ProjectCard project={project} />
+            // </motion.div>
           ))}
         </div>
       </div>
